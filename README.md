@@ -7,8 +7,21 @@ of email subscriptions.
 
 On destroy this topic is destroyed using shell to call AWS.
 
-The topic arn is available as the module output
+The topic arn is available as the module output.
+
+# Example
+```
+module "sns" {
+  source = "./sns_topic_to_emails"
+  topic_name = "email_topic"
+  emails = ["example@test.com", "example2@test.com"]
+}
+```
 
 # Gotchas
 
-AWS cli must be installed with available keys having the permissions necessary
+AWS cli must be installed with available keys having the permissions necessary.
+
+# Reminder
+
+Email subscriptions must be approved before they receiving messages.
