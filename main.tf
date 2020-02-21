@@ -3,7 +3,7 @@ resource "aws_sns_topic" "tf_aws_sns_topic_with_subscription" {
   provisioner "local-exec" {
     command = "sh ${path.module}/create_sns_topic_with_emails.sh"
     environment = {
-      sns_arn = self.arn
+      sns_topic_arn = self.arn
       sns_emails = join(" ", var.emails)
     }
   }
@@ -12,7 +12,7 @@ resource "aws_sns_topic" "tf_aws_sns_topic_with_subscription" {
     when    = destroy
     command = "sh ${path.module}/destroy_sns_topic_with_emails.sh"
     environment = {
-      topic_arn = self.arn
+      sns_topic_arn = self.arn
     }
   }
 }
