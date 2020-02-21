@@ -1,15 +1,8 @@
-# Why
+# What
 
-Terraform (0.12.18) doesn't currently support [SNS to email](https://www.terraform.io/docs/providers/aws/r/sns_topic_subscription.html)
+This Terraform module supports creating an SNS Topic with email subscriptions.
 
-This solution uses shell scripts to call AWS cli to create the SNS topic with a list
-of email subscriptions.
-
-On destroy this topic is destroyed using shell to call AWS.
-
-The topic arn is available as the module output.
-
-# Example
+## Example
 ```
 module "sns" {
   source = "./sns_topic_to_emails"
@@ -17,6 +10,16 @@ module "sns" {
   emails = ["example@test.com", "example2@test.com"]
 }
 ```
+
+# Why
+
+Terraform (0.12.18) doesn't currently support [SNS to email subscriptions](https://www.terraform.io/docs/providers/aws/r/sns_topic_subscription.html).
+
+This solution uses shell scripts to call AWS cli to create the SNS topic with a list of email subscriptions.
+
+On destroy this topic is destroyed using shell to call AWS.
+
+The topic arn is available as the module output.
 
 # Gotchas
 
